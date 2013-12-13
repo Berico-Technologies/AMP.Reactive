@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>cmf.eventing</id>
+    <version>3.2.1.0</version>
+    <title>CMF Event Bus Interfaces</title>
+    <authors>Berico Technologies, LLC</authors>
+    <owners>Berico Technologies, LLC</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+    <projectUrl>https://github.com/Berico-Technologies/CMF</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains the types necessary to use the event bus.</description>
+    <summary />
+    <releaseNotes>CMF Eventing Specification 3.2.1</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>cmf.eventing CMF</tags>
+    <dependencies>
+      <dependency id="cmf.bus" version="3.2.1.0" />
+    </dependencies>
+  </metadata>
+</package>

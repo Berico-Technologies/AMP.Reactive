@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>cmf.bus</id>
+    <version>3.2.1.0</version>
+    <title>CMF Envelope Bus Interfaces</title>
+    <authors>Berico Technologies, LLC</authors>
+    <owners>Berico Technologies, LLC</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+    <projectUrl>https://github.com/Berico-Technologies/CMF</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains the types necessary to use the envelope bus.</description>
+    <summary />
+    <releaseNotes>CMF Specification 3.2.1</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>enterprise messaging ampere cmf.bus CMF</tags>
+  </metadata>
+</package>

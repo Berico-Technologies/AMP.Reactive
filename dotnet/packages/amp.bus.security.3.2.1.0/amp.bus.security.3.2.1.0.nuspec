@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>amp.bus.security</id>
+    <version>3.2.1.0</version>
+    <title>AMP Security Providers</title>
+    <authors>Berico Technologies, LLC</authors>
+    <owners>Berico Technologies, LLC</owners>
+    <projectUrl>https://github.com/Berico-Technologies/AMP</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains security providers for AMP</description>
+    <summary />
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>ampere security</tags>
+    <dependencies>
+      <dependency id="Common.Logging" version="1.2.0" />
+    </dependencies>
+  </metadata>
+</package>

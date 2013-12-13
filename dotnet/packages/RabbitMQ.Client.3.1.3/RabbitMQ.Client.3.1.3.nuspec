@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RabbitMQ.Client</id>
+    <version>3.1.3</version>
+    <title>RabbitMQ client</title>
+    <authors>VMWare</authors>
+    <owners>VMWare</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This version was not found on the standard nuget gallery. Custom package to be used by amp.rabbit 3.2.1.0</description>
+    <summary />
+    <releaseNotes />
+    <copyright />
+    <tags>rabbitmq berico custom version</tags>
+  </metadata>
+</package>

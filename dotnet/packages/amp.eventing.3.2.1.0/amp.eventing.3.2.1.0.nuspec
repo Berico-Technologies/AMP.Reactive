@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>amp.eventing</id>
+    <version>3.2.1.0</version>
+    <title>AMP implementation of the CMF Event Bus</title>
+    <authors>Berico Technologies, LLC</authors>
+    <owners>Berico Technologies, LLC</owners>
+    <projectUrl>https://github.com/Berico-Technologies/AMP</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains the AMP implementation of the event bus.</description>
+    <summary />
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>ampere enterprise messaging publish subscribe</tags>
+    <dependencies>
+      <dependency id="cmf.eventing" version="3.2.1.0" />
+      <dependency id="Common.Logging" version="1.2.0" />
+      <dependency id="Newtonsoft.Json" version="4.0.4" />
+      <dependency id="amp.bus" version="3.2.1.0" />
+      <dependency id="amp.bus.security" version="3.2.1.0" />
+      <dependency id="amp.messaging" version="3.2.1.0" />
+    </dependencies>
+  </metadata>
+</package>

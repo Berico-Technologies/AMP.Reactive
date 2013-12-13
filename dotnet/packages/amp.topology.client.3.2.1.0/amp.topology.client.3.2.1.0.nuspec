@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>amp.topology.client</id>
+    <version>3.2.1.0</version>
+    <title>Global Topology Client</title>
+    <authors>Berico Technologies, LLC</authors>
+    <owners>Berico Technologies, LLC</owners>
+    <projectUrl>https://github.com/Berico-Technologies/AMP</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The global topology client for the RabbitMQ transport provider.</description>
+    <summary />
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>ampere global topology service</tags>
+    <dependencies>
+      <dependency id="cmf.bus" version="3.2.1.0" />
+      <dependency id="log4net" version="1.2.10" />
+      <dependency id="amp.messaging" version="3.2.1.0" />
+      <dependency id="amp.rabbit" version="3.2.1.0" />
+      <dependency id="amp.utility" version="3.2.1.0" />
+    </dependencies>
+  </metadata>
+</package>
