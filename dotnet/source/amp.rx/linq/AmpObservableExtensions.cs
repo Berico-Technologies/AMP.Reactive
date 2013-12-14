@@ -1,6 +1,7 @@
 ﻿using amp.rx.eventing;
 using cmf.bus;
 using cmf.eventing;
+using cmf.eventing.patterns.streaming;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,15 @@ using System.Threading.Tasks;
 
 namespace amp.rx.linq
 {
-    public partial class AmpObservableExtensions
+    public static partial class AmpObservableExtensions
     {
-        public static IObservable<TEvent> FromAmpEventPattern<TEvent>(this IEventBus eventBus, Func<TEvent, IDictionary<string, string>, object> eventHandler, string topic)
-        {
-            return FromAmpEventPattern<TEvent>(eventBus, eventHandler, topic, null);
-        }
-
-        public static IObservable<TEvent> FromAmpEventPattern<TEvent>(this IEventBus eventBus, Func<TEvent, IDictionary<string, string>, object> eventHandler, string topic, Func<Envelope, Exception, object> failedHandler)
+        
+        public static IObservable<StreamingEventItem<TEvent>> FromAmpEventPattern<TEvent>(this IEventBus eventBus, string topic)
         {
             //Register a subscriber of TEvent
-            ReactiveEventHandler<TEvent> handler = new ReactiveEventHandler<TEvent>(eventHandler, failedHandler, topic);
-            //Add handler
-            eventBus.Subscribe(handler);
+            AmpObservableEventHandler<TEvent> ampObservableHandler = new AmpObservableEventHandler<TEvent>(eventBus, topic);
 
-            return null;
+            return ampObservableHandler;
         }
     }
 }

@@ -83,8 +83,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="eventing\AmpObservable.cs" />
-    <Compile Include="eventing\ReactiveEventHandler.cs" />
+    <Compile Include="eventing\AmpObservableEventHandler.cs" />
+    <Compile Include="eventing\IAmpObservable.cs" />
+    <Compile Include="eventing\IAmpWritebackObservable.cs" />
     <Compile Include="linq\AmpObservableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
