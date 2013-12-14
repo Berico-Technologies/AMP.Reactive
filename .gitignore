@@ -1,0 +1,4 @@
+#Visual Studio Files
+*.suo
+obj/
+Debug/

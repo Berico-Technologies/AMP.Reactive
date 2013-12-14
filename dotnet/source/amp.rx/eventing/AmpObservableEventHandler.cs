@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace amp.rx.eventing
 {
-    public class AmpObservableEventHandler<TEvent> : IEventHandler, IAmpObservable<StreamingEventItem<TEvent>>
+    public class AmpObservableEventHandler<TEvent> : IEventHandler, IAmpObservable<TEvent>//, IAmpWritebackObservable<TEvent>
     {
         private static readonly object _lock = new object();
-        private readonly List<IObserver<StreamingEventItem<TEvent>>> _observers = new List<IObserver<StreamingEventItem<TEvent>>>();
+        private readonly List<IObserver<TEvent>> _observers = new List<IObserver<TEvent>>();
         private readonly IEventBus _eventBus;
         private readonly string _topic;
 
@@ -31,8 +31,8 @@ namespace amp.rx.eventing
         public object Handle(object ev, IDictionary<string, string> headers)
         {
             TEvent typedEvent = (TEvent)ev;
-            StreamingEventItem<TEvent> eventData = new StreamingEventItem<TEvent>(typedEvent, headers);
-            _observers.ForEach(obs => obs.OnNext(eventData));
+            
+            _observers.ForEach(obs => obs.OnNext(typedEvent));
             _observers.ForEach(obs => obs.OnCompleted());
             return null;
         }
@@ -50,7 +50,7 @@ namespace amp.rx.eventing
         #endregion
 
         #region Reactive IObservable Methods
-        public IDisposable Subscribe(IObserver<StreamingEventItem<TEvent>> observer)
+        public IDisposable Subscribe(IObserver<TEvent> observer)
         {
             lock (_lock)
             {
@@ -64,13 +64,24 @@ namespace amp.rx.eventing
         }
         #endregion
 
+
+        #region IAmpObservable Methods
+        public IEventBus EventBus
+        {
+            get
+            {
+                return _eventBus;
+            }
+        }
+        #endregion
+
         private class Subscription : IDisposable
         {
-            private readonly List<IObserver<StreamingEventItem<TEvent>>> _subscriptions = new List<IObserver<StreamingEventItem<TEvent>>>();
+            private readonly List<IObserver<TEvent>> _subscriptions = new List<IObserver<TEvent>>();
 
-            private readonly IObserver<StreamingEventItem<TEvent>> _subscriber;
+            private readonly IObserver<TEvent> _subscriber;
 
-            public Subscription(List<IObserver<StreamingEventItem<TEvent>>> subscriptions, IObserver<StreamingEventItem<TEvent>> subscriber)
+            public Subscription(List<IObserver<TEvent>> subscriptions, IObserver<TEvent> subscriber)
             {
                 _subscriptions = subscriptions;
                 _subscriber = subscriber;
@@ -89,6 +100,15 @@ namespace amp.rx.eventing
             }
         }
 
-        
+        #region IAmpWritebackObservable Methods
+
+        public void Write<TMessage>(TMessage serializableObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+
     }
 }

@@ -86,6 +86,8 @@
     <Compile Include="eventing\AmpObservableEventHandler.cs" />
     <Compile Include="eventing\IAmpObservable.cs" />
     <Compile Include="eventing\IAmpWritebackObservable.cs" />
+    <Compile Include="eventing\rpc\IAmpRpcWritebackObservable.cs" />
+    <Compile Include="linq\AmpObservableExtensions.AsWritebackObservable.cs" />
     <Compile Include="linq\AmpObservableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
