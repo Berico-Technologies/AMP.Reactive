@@ -33,6 +33,7 @@ namespace amp.rx.eventing
             TEvent typedEvent = (TEvent)ev;
             StreamingEventItem<TEvent> eventData = new StreamingEventItem<TEvent>(typedEvent, headers);
             _observers.ForEach(obs => obs.OnNext(eventData));
+            _observers.ForEach(obs => obs.OnCompleted());
             return null;
         }
 
