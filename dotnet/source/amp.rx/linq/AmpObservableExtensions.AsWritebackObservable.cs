@@ -15,8 +15,17 @@ namespace amp.rx.linq
         public static IAmpWritebackObservable<TEvent> WithWriteback<TEvent>(this IAmpObservable<TEvent> ampObservable)
         {
             IEventBus eventBus = ampObservable.EventBus;
+            string topic = ampObservable.Topic;
 
-            return null;
+            if (ampObservable is IAmpWritebackObservable<TEvent>)
+            {
+                return ampObservable as IAmpWritebackObservable<TEvent>;
+            }
+            else
+            {
+                AmpObservableEventHandler<TEvent> ampWritebackObservable = new AmpObservableEventHandler<TEvent>(eventBus, topic);
+                return ampWritebackObservable;
+            }
         }
     }
 }

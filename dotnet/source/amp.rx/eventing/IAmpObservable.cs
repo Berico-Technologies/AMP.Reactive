@@ -18,5 +18,7 @@ namespace amp.rx.eventing
         /// The AMPere event bus used to receive TEvent messages.
         /// </summary>
         IEventBus EventBus { get; }
+
+        string Topic { get; }
     }
 }

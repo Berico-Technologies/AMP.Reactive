@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace amp.rx.eventing
 {
-    public class AmpObservableEventHandler<TEvent> : IEventHandler, IAmpObservable<TEvent>//, IAmpWritebackObservable<TEvent>
+    public class AmpObservableEventHandler<TEvent> : IEventHandler, IAmpObservable<TEvent>, IAmpWritebackObservable<TEvent>
     {
         private static readonly object _lock = new object();
         private readonly List<IObserver<TEvent>> _observers = new List<IObserver<TEvent>>();
@@ -33,7 +33,7 @@ namespace amp.rx.eventing
             TEvent typedEvent = (TEvent)ev;
             
             _observers.ForEach(obs => obs.OnNext(typedEvent));
-            _observers.ForEach(obs => obs.OnCompleted());
+           
             return null;
         }
 
@@ -104,7 +104,7 @@ namespace amp.rx.eventing
 
         public void Write<TMessage>(TMessage serializableObject)
         {
-            throw new NotImplementedException();
+            _eventBus.Publish(serializableObject);
         }
 
         #endregion
