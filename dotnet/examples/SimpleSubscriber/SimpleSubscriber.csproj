@@ -40,6 +40,12 @@
     <Reference Include="cmf.eventing">
       <HintPath>..\..\packages\cmf.eventing.3.2.1.0\lib\net40\cmf.eventing.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Reactive.Core">
@@ -67,10 +73,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="amp-test-cert.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\source\amp.configuration\amp.configuration.csproj">
+      <Project>{6f94ce41-1772-4a70-a2e1-efeb7b82daa4}</Project>
+      <Name>amp.configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\source\amp.rx\amp.rx.csproj">
       <Project>{56616cf1-eae8-4f22-be3a-15362aee8382}</Project>
       <Name>amp.rx</Name>

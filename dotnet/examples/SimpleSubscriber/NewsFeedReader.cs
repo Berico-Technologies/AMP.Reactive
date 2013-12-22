@@ -1,4 +1,5 @@
 ﻿using cmf.eventing;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,16 @@ using System.Threading.Tasks;
 using amp.rx.linq;
 using amp.rx.eventing;
 using System.Reactive.Linq;
+using cmf.eventing.patterns.rpc;
 
 namespace SimpleSubscriber
 {
     public class NewsFeedReader
     {
-        IEventBus _eventBus;
+        IRpcEventBus _eventBus;
 
-        public NewsFeedReader(IEventBus eventBus)
+        [Inject]
+        public NewsFeedReader(IRpcEventBus eventBus)
         {
             _eventBus = eventBus;
             var newsFeed = _eventBus

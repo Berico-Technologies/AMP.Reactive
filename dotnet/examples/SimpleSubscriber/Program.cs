@@ -1,4 +1,5 @@
-﻿using System;
+﻿using amp.configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace SimpleSubscriber
     {
         public static void Main(string[] args)
         {
+            AmpereConfig config = new AmpereConfig();
 
             Console.WriteLine("Hit Enter to end program");
             Console.ReadLine();

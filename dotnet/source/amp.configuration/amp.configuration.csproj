@@ -94,13 +94,12 @@
     <Compile Include="AmpereConfig.cs" />
     <Compile Include="modules\EventBusModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="providers\EnvelopeReceiverProvider.cs" />
-    <Compile Include="providers\FallbackRoutingInfoProvider.cs" />
-    <Compile Include="providers\TopologyServiceProvider.cs" />
     <Compile Include="settings\CommandableCacheSettings.cs" />
     <Compile Include="settings\FallbackRoutingInfoProviderSettings.cs" />
     <Compile Include="settings\FileBasedCertProviderSettings.cs" />
+    <Compile Include="settings\OutboundHeadersProcessorSettings.cs" />
     <Compile Include="settings\RoutingInfoRetrieverSettings.cs" />
+    <Compile Include="settings\TokenConnectionFactorySettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -29,10 +29,16 @@ namespace amp.configuration.modules
         public override void Load()
         {
             Bind<IFallbackRoutingInfoProvider>().ToMethod(context => CreateFallbackRoutingInfoProvider());
-            Bind<ICertificateProvider>().ToMethod(context => CreateFileBasedCertProvider());
-            Bind<IRabbitConnectionFactory>().To<CertificateConnectionFactory>();
+            Bind<ICertificateProvider>().ToMethod(context => CreateFileBasedCertProvider())
+                .InSingletonScope();
+            Bind<CertificateConnectionFactory>().ToSelf();
+            Bind<Utf8JsonDeserializer<TokenConnectionFactory.NamedToken>>().ToSelf();
+
+            Bind<IRabbitConnectionFactory>().ToMethod(context => CreateTokenConnectionFactory(context));
+
             Bind<IWebRequestFactory>().To<CertificateWebRequestFactory>();
             Bind<Utf8JsonDeserializer<RoutingInfo>>().ToSelf();
+            
             Bind<IRoutingInfoRetreiver>().ToMethod(context => CreateHttpRoutingInfoRetriever(context));
             Bind<ITopologyService>().To<GlobalTopologyService>();
             Bind<IEnvelopeReceiver>().To<RabbitEnvelopeReceiver>();
@@ -43,6 +49,7 @@ namespace amp.configuration.modules
             Bind<IRoutingInfoCache>().ToMethod(context => CreateCommandableCache(context));
             Bind<ITransportProvider>().To<RabbitTransportProvider>();
             Bind<IEnvelopeBus>().To<DefaultEnvelopeBus>();
+            
             Bind<IRpcEventBus>().ToMethod(context => CreateDefaultRpcBus(context));
         }
 
@@ -101,6 +108,34 @@ namespace amp.configuration.modules
             return ohp;
         }
 
+        private DefaultRpcBus CreateDefaultRpcBus(IContext context)
+        {
+            IKernel kernel = context.Kernel;
+            IEnvelopeBus bus = kernel.Get<IEnvelopeBus>();
+            List<IMessageProcessor> inboundChain = new List<IMessageProcessor>();
+            inboundChain.Add(kernel.Get<RpcFilter>());
+            inboundChain.Add(kernel.Get<JsonSerializationProcessor>());
+
+            List<IMessageProcessor> outboundChain = new List<IMessageProcessor>();
+            outboundChain.Add(kernel.Get<JsonSerializationProcessor>());
+            outboundChain.Add(kernel.Get<OutboundHeadersProcessor>());
+            outboundChain.Add(kernel.Get<RpcFilter>());
+
+            DefaultRpcBus rpcBus = new DefaultRpcBus(bus, inboundChain, outboundChain);
+            return rpcBus;
+        }
+
+        private TokenConnectionFactory CreateTokenConnectionFactory(IContext context)
+        {
+            TokenConnectionFactorySettings ts = new TokenConnectionFactorySettings();
+            IKernel kernel = context.Kernel;
+
+            TokenConnectionFactory factory = new TokenConnectionFactory(ts.AnubisUri,
+                kernel.Get<IWebRequestFactory>(),
+                kernel.Get<Utf8JsonDeserializer<TokenConnectionFactory.NamedToken>>(),
+                kernel.Get<CertificateConnectionFactory>());
+            return factory;
+        }
 
     }
 }
